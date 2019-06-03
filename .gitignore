@@ -88,6 +88,9 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Google Calendar API Key
+client_secret.json
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
