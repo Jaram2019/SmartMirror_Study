@@ -15,6 +15,8 @@ app.use(express.static(__dirname + '/public'));
 
 
 app.use(['/','/index'], require('./routes/index')); //여러개의 라우팅을 한번에 : 배열에 담아서 선언.
+app.use(['/bus', '/shuttle'], require('./routes/shuttle')); //여러개의 라우팅을 한번에 : 배열에 담아서 선언.
+app.use('/haksik', require('./routes/haksik'));
 
 
 app.listen(PORT, function(){
