@@ -11,11 +11,11 @@ var SCOPES = [
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 // 토큰이 저장될 디렉토리
-var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
+var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs.json';
 // 토큰 파일 명
 
 router.get('/', function(req,res) {
-    fs.readFile('routes/client_secret.json/', function processClientSecrets(err, content) {
+    fs.readFile('client_secret.json/', function processClientSecrets(err, content) {
     // 로컬의 client_secret.json 파일을 읽고 'authorize' 함수 실행
     if (err) {
       console.log('Error loading client secret file: ' + err);
