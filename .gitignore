@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/node,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=node,visualstudiocode
+# Created by https://www.gitignore.io/api/node,windows,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=node,windows,visualstudiocode
 
 ### Node ###
 # Logs
@@ -25,6 +25,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
+*.lcov
 
 # nyc test coverage
 .nyc_output
@@ -47,6 +48,9 @@ jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
+
+# TypeScript cache
+*.tsbuildinfo
 
 # Optional npm cache directory
 .npm
@@ -76,6 +80,9 @@ typings/
 # nuxt.js build output
 .nuxt
 
+# react / gatsby 
+public/
+
 # vuepress build output
 .vuepress/dist
 
@@ -99,5 +106,31 @@ typings/
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/node,visualstudiocode
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.gitignore.io/api/node,windows,visualstudiocode
 routes/crawller_test.js
