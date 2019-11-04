@@ -22,6 +22,10 @@ router.get('/', function(req,res) {
       return;
     }
     authorize(JSON.parse(content), listEvents);
+    res.render('calendar',{
+      title : "TITLE",
+      eventList : eventList
+    })
   })
 });
  
@@ -89,7 +93,8 @@ function storeToken(token) {
   }); // 토큰을 만듭니다.
   console.log('Token stored to ' + TOKEN_PATH);
 }
- 
+
+let eventList;
 function listEvents(auth) {
   // 토큰 인증이 완료되면 최종적으로 실행되는 함수 입니다.
   // 아래의 예제는 구글 캘린더에 등록된 이벤트 10개의 정보를 출력합니다.
@@ -107,7 +112,8 @@ function listEvents(auth) {
       console.log('The API returned an error: ' + err);
       return;
     }
-    var events = response.data.items;
+    let events = response.data.items;
+    eventList = events;
     if (events.length == 0) {
       console.log('No upcoming events found.');
     } else {
