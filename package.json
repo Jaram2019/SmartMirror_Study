@@ -1,0 +1,18 @@
+{
+  "name": "SmartMirror_Study",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/CXZ7720/SmartMirror_Study",
+  "author": "Yeonggyun.Kim <kygha7205@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "date-utils": "^1.2.21",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "google-auth-library": "^4.1.0",
+    "googleapis": "^40.0.0",
+    "request": "^2.88.0",
+    "router": "^1.3.3",
+    "underscore": "^1.9.1"
+  }
+}
