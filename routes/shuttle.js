@@ -62,7 +62,6 @@ router.get('/', function (req, res) {
         nearHour_yesulin: search_res[3],
         nearHour_giksa: search_res[1]
     })
-    
 });
 
 function find_close_hour(now, target){// week_data
