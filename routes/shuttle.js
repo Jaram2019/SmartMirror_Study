@@ -7,10 +7,10 @@ var nearBus_busstop
 var nearHour_busstop
 
 let shuttlecock_o = 'https://shuttle.jaram.net/semester/week/shuttlecock_o'
-let giksa = 'https://shuttle.jaram.net/semester/week/giksa'
-let subway = 'https://shuttle.jaram.net/semester/week/subway'
-let yesulin = 'https://shuttle.jaram.net/semester/seek/yesulin'
-var is_dawn = 0;
+// let giksa = 'https://shuttle.jaram.net/semester/week/giksa'
+// let subway = 'https://shuttle.jaram.net/semester/week/subway'
+// let yesulin = 'https://shuttle.jaram.net/semester/seek/yesulin'
+// var is_dawn = 0;
 
 //셔틀콕 외부행 조회
 function gettime(busstop) {
@@ -46,25 +46,13 @@ function gettime(busstop) {
 
 router.get('/', function (req, res) {
 
-    async function search(){
-        var res_shuttle_o = await gettime(shuttlecock_o)
-        // var res_giksa = await gettime(giksa)
-        // var res_subway = await gettime(subway)
-        // var res_yesulin = await gettime(yesulin)
-
-        return res_shuttle_o
-    }
-    search_res = search().then(
-        function (param) {
-            console.log(param)
-        }
-    )
+   
+    var res_shuttle_o = gettime(shuttlecock_o)
+    
     console.log("!!!!!!!!!" + search_res)
     res.render('bus', {
-        nearHour_shuttlecock_O: search_res,
-        // nearHour_subway: search_res[2],
-        // nearHour_yesulin: search_res[3],
-        // nearHour_giksa: search_res[1]
+        nearHour_shuttlecock_O: res_shuttle_o,
+
     })
     
 });
