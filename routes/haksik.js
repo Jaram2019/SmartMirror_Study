@@ -11,38 +11,55 @@ var query = {
     date: "2019-11-11"
 };
 
-// var menu1;
-// var menu2;
-// var menu3;
+var menu1;
+var menu2;
+var menu3;
+var all_m;
 
 function getMenus(URL, HEADERS, QUERY){
-    request({url: URL, headers: HEADERS, query: QUERY}, function(err, res, body){
-        var result = JSON.parse(body);
-        var menu1 = result.store.menus[0].description;
-        var menu2 = result.store.menus[1].description;
-        var menu3 = result.store.menus[2].description;
-        console.log(menu1);
-        console.log(menu2);
-        console.log(menu3);
+    return new Promise(resolve=>{
+        request({url: URL, headers: HEADERS, query: QUERY}, function(err, res, body){
+            var result = JSON.parse(body);
+            var menu1 = result.store.menus[0].description;
+            var menu2 = result.store.menus[1].description;
+            var menu3 = result.store.menus[2].description;
+            console.log(menu1);
+            console.log(menu2);
+            console.log(menu3);
 
-        return [menu1, menu2, menu3]
+            resolve(result)
+        })
     })
 }
 
 router.get('/', function (req, res) {
-    
-    async function menus(){
-        var menuu = await getMenus(url, headers, query)
-        return menuu
-    }
-    all_m = menus()
-    console.log(all_m);
-    res.render('haksik', {
-        menu1: all_m[0],
-        menu2: all_m[1],
-        menu3: all_m[2]
+    getMenus(url, headers, query)
+    .then(function(result){
+        m1 = result.store.menus[0].description;
+        m2 = result.store.menus[1].description;
+        m3 = result.store.menus[2].description;
+        res.render('haksik', {
+            menu1: m1,
+            menu2: m2,
+            menu3: m3
+        })
     })
 });
+
+// router.get('/', function (req, res) {
+    
+//     async function menus(){
+//         var menuu = await getMenus(url, headers, query)
+//         return menuu
+//     }
+//     all_m = menus()
+//     console.log(all_m[0]);
+//     res.render('haksik', {
+//         menu1: all_m[0],
+//         menu2: all_m[1],
+//         menu3: all_m[2]
+//     })
+// });
 
 // router.get('/', function (req, res) {
 //     request.get({url: url, headers: headers, query: query}, function(err, res, body){

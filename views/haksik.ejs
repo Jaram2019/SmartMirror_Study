@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Buttons</title>
+  <title>JARAM - Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,11 +29,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">JARAM</div>
       </a>
 
       <!-- Divider -->
@@ -41,7 +41,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -51,20 +51,22 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        유용한 도구
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item active">
         <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
+          <span>학식</span>
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item active" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
+            <h6 class="collapse-header">식당목록:</h6>
+            <a class="collapse-item active" href="/haksik">학생식당</a>
+            <a class="collapse-item" href="cards.html">푸드코드</a>
+            <a class="collapse-item" href="#">교직원식당</a>
+            <a class="collapse-item" href="#">창업보육원</a>
           </div>
         </div>
       </li>
@@ -73,15 +75,15 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
+          <span>셔틀버스 시간</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <h6 class="collapse-header">셔틀버스 시간표:</h6>
+            <a class="collapse-item" href="/bus">셔틀콕</a>
+            <a class="collapse-item" href="utilities-border.html">기숙사</a>
+            <a class="collapse-item" href="utilities-animation.html">한대앞역</a>
+            <a class="collapse-item" href="utilities-other.html">예술인아파트</a>
           </div>
         </div>
       </li>
@@ -91,21 +93,21 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        기타
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>도구모음</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+            <h6 class="collapse-header">날씨:</h6>
+            <a class="collapse-item" href="login.html">뉴스</a>
+            <a class="collapse-item" href="register.html">캘린더</a>
+            <a class="collapse-item" href="forgot-password.html">슬랙 공지 모아보기</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">404 Page</a>
@@ -332,7 +334,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Buttons</h1>
+          <h1 class="h3 mb-4 text-gray-800">학생식당</h1>
 
           <div class="row">
 
@@ -341,7 +343,7 @@
               <!-- Circle Buttons -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Circle Buttons</h6>
+                  <h6 class="m-0 font-weight-bold text-primary"><%=menu1%></h6>
                 </div>
                 <div class="card-body">
                   <p>Use Font Awesome Icons (included with this theme package) along with the circle buttons as shown in the examples below!</p>
@@ -408,7 +410,7 @@
               <!-- Brand Buttons -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Brand Buttons</h6>
+                  <h6 class="m-0 font-weight-bold text-primary"><%=menu2%></h6>
                 </div>
                 <div class="card-body">
                   <p>Google and Facebook buttons are available featuring each company's respective brand color. They are used on the user login and registration pages.</p>
@@ -425,7 +427,7 @@
 
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Split Buttons with Icon</h6>
+                  <h6 class="m-0 font-weight-bold text-primary"><%=menu3%></h6>
                 </div>
                 <div class="card-body">
                   <p>Works with any button colors, just use the <code>.btn-icon-split</code> class and the markup in the examples below. The examples below also use the <code>.text-white-50</code> helper class on the icons for additional styling, but it is not required.</p>
@@ -554,6 +556,13 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
