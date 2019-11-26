@@ -22,13 +22,13 @@ router.get('/', function(req,res) {
       return;
     }
     authorize(JSON.parse(content), listEvents);
+
     res.render('calendar',{
-      title : "TITLE",
       eventList : eventList
-    })
+    });
   })
 });
- 
+
 function authorize(credentials, callback) {
   var clientSecret = credentials.installed.client_secret;
   var clientId = credentials.installed.client_id;
@@ -120,7 +120,7 @@ function listEvents(auth) {
       console.log('Upcoming 10 events:');
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
-        var start = event.start.dateTime || event.start.date;
+        var start = event.start.dateTime;
         console.log('%s - %s', start, event.summary);
       }
     }
