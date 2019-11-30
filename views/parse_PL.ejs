@@ -101,7 +101,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
           aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -113,7 +113,7 @@
             <a class="collapse-item" href="login.html">뉴스</a>
             <a class="collapse-item" href="register.html">캘린더</a>
             <a class="collapse-item" href="forgot-password.html">슬랙 공지 모아보기</a>
-            <a class="collapse-item" href="/parse_PL">스포츠</a>
+            <a class="collapse-item active" href="/parse_PL">스포츠</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">404 Page</a>
@@ -351,6 +351,39 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Position</th>
+              <th scope="col">Club</th>
+              <th scope="col">Played</th>
+              <th scope="col">Won</th>
+              <th scope="col">Drawn</th>
+              <th scope="col">Lost</th>
+              <th scope="col">GF</th>
+              <th scope="col">GA</th>
+              <th scope="col">GD</th>
+              <th scope="col">Points</th>
+            </tr>
+            </thead>
+            <tbody>
+
+              <% for (let i = 0; i < PLtable.length; ++i) {%>
+              <tr>
+                <th scope="row"><%=PLtable[i][0]%></th>
+                <td><%=PLtable[i][1]%></td>
+                <td><%=PLtable[i][2]%></td>
+                <td><%=PLtable[i][3]%></td>
+                <td><%=PLtable[i][4]%></td>
+                <td><%=PLtable[i][5]%></td>
+                <td><%=PLtable[i][6]%></td>
+                <td><%=PLtable[i][7]%></td>
+                <td><%=PLtable[i][8]%></td>
+                <td><%=PLtable[i][9]%></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
 
 
 
