@@ -1,7 +1,6 @@
 var router = require('express').Router();
 var bus = require('../public/js/bus.js');
 var shuttlecock_o = 'https://shuttle.jaram.net/semester/week/shuttlecock_o'
-var shuttletime = bus.gettime(shuttlecock_o)
 // var response = '';
 // var shuttle = (req, res, next) => {
 //     response += bus.gettime(shuttlecock_o)
@@ -10,7 +9,7 @@ var shuttletime = bus.gettime(shuttlecock_o)
 /* GET home page. */
 
 router.get('/',  function (req, res) {
-
+    var shuttletime = bus.gettime(shuttlecock_o)
 
     res.render('index',{
         bustime: shuttletime
