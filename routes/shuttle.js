@@ -3,102 +3,118 @@ let request = require('request');
 let dateutil = require('date-utils');
 console.log("index Router");
 /* GET home page. */
-var nearBus_busstop
-var nearHour_busstop
 
-let shuttlecock_o = 'https://shuttle.jaram.net/semester/week/shuttlecock_o'
-// let giksa = 'https://shuttle.jaram.net/semester/week/giksa'
-// let subway = 'https://shuttle.jaram.net/semester/week/subway'
-// let yesulin = 'https://shuttle.jaram.net/semester/seek/yesulin'
-// var is_dawn = 0;
+//셔틀콕 내부행 조회
 
-//셔틀콕 외부행 조회
-function gettime(busstop) {
-    request(busstop, function (err, res, body) {
-        if (!err && res.statusCode == 200) {
-            const week_data = JSON.parse(body);
-            console.log(week_data);
-            let newDate = new Date();
-            let time = newDate.toFormat('HH24:MI');
-            console.log("now time is : " + time)
-            nearHour_busstop = find_close_hour(time, week_data);
-            if (nearHour_busstop.length == 0) { //배열을 다 돌아도 현재시간과 가장 가까운 데이터를 못 찾는 경우 => 새벽시간대에 검색한 경우
-                is_dawn = 1
-                console.log("EMPTY")
-                nearHour_busstop = find_close_hour("07:00", week_data)
-            }
-            console.log("near hour is : " + nearHour_busstop);
-            if (is_dawn == 1) {
-                nearBus_busstop = 0
-                console.log(nearBus_busstop)
-            } else {
-                nearBus_busstop = find_near_bus(time, nearHour_busstop);
-            }
-            console.log("The nearest Bus of ShuttleCock => HandaeAp Station comes at " + nearHour_busstop[nearBus_busstop]);
-
-            return nearHour_busstop[nearBus_busstop]
-        }
+function getbus() {
+  return new Promise(resolve => {
+    request({ url: 'https://hyu-shuttlebus.appspot.com/shuttlecock_o'}, function(
+      err,
+      data,
+      body
+    ) {
+      var result = JSON.parse(body);
+      resolve(result);
     });
+  });
 }
 
+router.get("/", function(req, res) {
+  getbus().then(function(result) {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+
+        let buslst = [];
+        let tempstr = {};
+        for (let i = 0; i < result.length; i++) {
+          let temp = result[i].time.split(":");
+          if (
+            parseInt(temp[0]) * 60 +
+              parseInt(temp[1]) -
+              parseInt(hour) * 60 -
+              parseInt(min) >
+            0
+          ) {
+            let tmpdate = Math.floor(
+              new Date(year, month - 1, day, temp[0], temp[1], sec) / 1000
+            );
+            tempstr = { time: tmpdate, type: result[i].type };
+            buslst.push(result[i].time);
+          }
+        }
 
 
 
-router.get('/', function (req, res) {
+    console.log(buslst[0]);
 
-   
-    var res_shuttle_o = gettime(shuttlecock_o)
-    
-    console.log("!!!!!!!!!" + search_res)
-    res.render('bus', {
-        nearHour_shuttlecock_O: res_shuttle_o,
-
-    })
-    
+    res.render("bus", {
+      bus: buslst[0]
+    });
+  });
 });
 
-function find_close_hour(now, target){// week_data
-    var nowTimeArr = now.split(':'); // 파리미터로 넘겨받은 현재시간을 : 기준으로 잘라서 배열에 저장.
-    var near = [];
-    console.log("now time arr : " + nowTimeArr)
-    // console.log()
-    // console.log("target:" + target[0].time)
 
-    for (let i = 0; i < target.length; i++) {
-        time = target[i].time; //08:00 형식의 데이터 추출
-        var spl_time = time.split(":");//:기준으로 쪼개어 배열로 저장.
-        if (spl_time[0] == nowTimeArr[0] || spl_time[0] == Number(nowTimeArr[0]) + 1){
-            // console.log("what is spltime?? " + spl_time)
-            // console.log("what is nowtime[0]?? " + nowTimeArr[0])
-            // console.log(Number(nowTimeArr[0]) + 1)
-            near.push(time);//해당 시간대의 시각을 배열에 추가
-        }
-    }
-    return near; //해당 시간대의 시각이 담긴 배열을 리턴
-}
 
-function find_near_bus(now, target){ //target 은 ['HH:MM",,,] 꼴의 배열.
-    var nowMinute = now.split(":")[1]; //분
-    var nearest = 60; // nearest는 지금까지의 가장 최근접한 차이.
-    var idx = 0;
-    for (let i = 0; i < target.length; i++) {
-        console.log(Math.abs(target[i].split(":")[1] - nowMinute));
-        var gap = target[i].split(":")[1] - nowMinute; //gap 는 새로 구한 차이(절대값)
-        console.log(target[i].split(":")[1])
-        console.log("gap = " + gap);
-        if(Math.abs(gap) <= nearest){ // 새로 구한 값이 최근접일 경우 치환
-            if (gap <= 0) {
-                idx++
-                continue;
-            }
-            nearest = gap;
-            idx++;
-        }
 
-        console.log("idx = " + idx);
-    }
+
+
+
+
+
+
+// router.get('/', function (req, data) {
+//     var buslst = [];
+//     fetch("https://hyu-shuttlebus.appspot.com/shuttlecock_o")
+//     .then(data => data.json())
+//     .then(data => {
+//         let date = new Date.now();
+//         let year = date.getFullYear();
+//         let month = date.getMonth() + 1;
+//         let day = date.getDate();
+//         let hour = date.getHours();
+//         let min = date.getMinutes();
+//         let sec = date.getSeconds();
+
+//         let tempstr = {};
+//         for (let i = 0; i < data.length; i++) {
+//         let temp = data[i].time.split(":");
+//         if (
+//             parseInt(temp[0]) * 60 +
+//             parseInt(temp[1]) -
+//             parseInt(hour) * 60 -
+//             parseInt(min) >
+//             0
+//         ) {
+//             let tmpdate = Math.floor(new Date(year, month-1, day, temp[0], temp[1], sec) / 1000)
+//             tempstr = {time: tmpdate, type: data[i].type}
+//             buslst.push(tempstr);
+//         }
+//         }
+//         if (buslst.length < 5) {
+//         while(buslst.length < 5) {
+//             tempstr = {time: 0, type: "F"}
+//             buslst.push(tempstr)
+//         }
+//         }
+//         console.log(buslst);
+//     })
+//     .catch(e => {
+//         console.log(e);
+//     });
     
-    return idx-1;
-}
+// console.log(buslst);
+//     data.render("bus", {
+        
+//       nearHour_shuttlecock_O: buslst
+//     });
+    
+// });
+
+
 
 module.exports = router;
